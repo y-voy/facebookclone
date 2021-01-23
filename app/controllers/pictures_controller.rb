@@ -1,13 +1,21 @@
 class PicturesController < ApplicationController
   def index
+    @pictures = Picture.all
   end
 
   def new
+    @picture = Picture.new
   end
 
   def create
-    Picture.create(content: params[:picture][:content])
+    Picture.create(picture_params)
     redirect_to new_picture_path
+  end
+
+  private
+
+  def picture_params
+    params.require(:picture).permit(:content)
   end
 
 end
