@@ -12,6 +12,10 @@
 <div class="picture_content">
   <%= form.label :content %>
   <%= form.text_field :content %>
+  <%= form.label :image %>
+  <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
+  <%= form.file_field :image %>
+  <%= form.hidden_field :image_cache %>
 </div>
 <%= form.submit %>
 <% end %>
