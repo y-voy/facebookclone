@@ -5,6 +5,7 @@ ruby '2.6.5'
 gem 'rails', '~> 5.2.4'
 
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bcrypt', '3.1.11'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.2'
 gem 'dotenv-rails'
