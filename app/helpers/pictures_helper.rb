@@ -7,5 +7,5 @@ module PicturesHelper
       picture_path
     end
   end
-  
+
 end
