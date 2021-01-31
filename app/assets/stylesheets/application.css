@@ -1,5 +1,7 @@
-*= require_tree .
-*= require_self
+/*
+ *= require_tree .
+ *= require_self
+ */
 
 .like-btn {
   width: 25px;
