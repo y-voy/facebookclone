@@ -1,29 +1,26 @@
-<h1>投稿一覧</h1>
 <p><%= notice %></p>
-<table>
-  <tr>
-    <th>内容</th>
-  </tr>
+<%= link_to '投稿画面へ', new_picture_path, class: "btn btn-primary" %>
+<br><br>
 <% @pictures.each do |picture| %>
-  <tr>
-    <td><%= picture.content %></td>
-    <td><%= image_tag picture.image.url if picture.image && picture.image.url %></td>
-    <td><%= picture.user.name %></td>
-    <td><%= picture.favorites.count %></td>
-    <td><%= link_to '詳細を確認する', picture_path(picture.id) %></td>
+<div class="card-layout">
+<div class="card w-50">
+  <div class="card-body">
+    <h5 class="card-title"><%= picture.user.name %>  <a class="created_at_label">- <%= picture.created_at %></a></h5>
+    <p class="card-text"><%= picture.content %><p><%= image_tag picture.image.url if picture.image && picture.image.url %></p>
+    <%= link_to '詳細', picture_path(picture.id), class: "btn btn-outline-success"%>
     <% if picture.user_id == current_user.id %>
-    <td><%= link_to '編集する', edit_picture_path(picture.id) %></td>
-    <td><%= link_to '削除する', picture_path(picture.id), method: :delete, data: { confirm: "本当に削除していいですか？" } %></td>
+    <%= link_to '編集', edit_picture_path(picture.id), class: "btn btn-outline-success" %>
+    <%= link_to '削除', picture_path(picture.id), class: "btn btn-outline-danger", method: :delete, data: { confirm: "本当に削除していいですか？" } %>
     <% end %>
-    <% unless picture.user_id == current_user.id %>
     <% @favorite = current_user.favorites.find_by(picture_id: picture.id) %>
       <% if @favorite.present? %>
-        <td><%= link_to '「いいね」を解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %></td>
+        <%= link_to '', favorite_path(id: @favorite.id), class: "fas fa-heart unlike-btn", method: :delete %>
       <% else %>
-        <td><%= link_to '「いいね」をする', favorites_path(picture_id: picture.id), method: :post, class: 'btn btn-primary' %></td>
+        <%= link_to '', favorites_path(picture_id: picture.id), class: "far fa-heart unlike-btn", method: :post %>
       <% end %>
-    <% end %>
-  </tr>
+    <span class="badge bg-danger"><%= picture.favorites.count %></span>
+  </div>
+</div>
+<br>
+</div>
 <% end %>
-</table>
-<%= link_to '投稿画面へ', new_picture_path %>

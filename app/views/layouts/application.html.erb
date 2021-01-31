@@ -4,20 +4,59 @@
     <title>FacebookClone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.css" rel="stylesheet"/>
   </head>
 
   <body>
-    <% if logged_in? %>
-      <%= link_to "Profile", user_path(current_user.id) %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-      <%= current_user.name %>
-    <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
-    <% end %>
+    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <% if logged_in? %>
+        <a class="navbar-brand" href="/pictures"><i class="fas fa-home"></i></a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "Profile", user_path(current_user.id), class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Logout", session_path(current_user.id), method: :delete, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">Logged in by: <%= current_user.name %></a>
+            </li>
+          </ul>
+        </div>
+        <% else %>
+        <a class="navbar-brand" href="/sessions/new"><i class="fas fa-home"></i></a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_path, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Login", new_session_path, class: "nav-link active" %>
+            </li>
+          </ul>
+        </div>
+        <% end %>
+    </nav>
+
     <%= yield %>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.2.0/mdb.min.js"></script>
+    <script src="https://kit.fontawesome.com/28c662aeec.js" crossorigin="anonymous"></script>
+    </div>
   </body>
+
 </html>

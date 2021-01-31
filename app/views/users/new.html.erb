@@ -1,6 +1,6 @@
-<h1>Sign up</h1>
+<h4>Sign up</h4>
 <% if @user.errors.any? %>
-  <div id="error_explanation">
+  <div id="error_explanation" class="alert alert-danger col-md-6" role="alert">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
     <ul>
     <% @user.errors.full_messages.each do |message| %>
@@ -9,14 +9,17 @@
     </ul>
   </div>
 <% end %>
+<div class="col-md-3">
 <%= form_with(model: @user, local: true) do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: "form-control", placeholder: "川崎　太郎" %>
   <%= f.label :email %>
-  <%= f.email_field :email %>
+  <%= f.email_field :email, class: "form-control", placeholder: "name@example.com" %>
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, class: "form-control" %>
   <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit "Create my account" %>
+  <%= f.password_field :password_confirmation, class: "form-control" %>
+  <br>
+  <%= f.submit "アカウントを作成", class: "btn btn-primary" %>
 <% end %>
+</div>

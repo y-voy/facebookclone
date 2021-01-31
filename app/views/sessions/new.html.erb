@@ -1,8 +1,13 @@
-<h1>Log in</h1>
+<h4>Log in</h4>
 <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+<div class="col-md-3">
   <%= f.label :email %>
-  <%= f.email_field :email %>
+  <%= f.email_field :email, class: "form-control login-form", placeholder: "name@example.com" %>
   <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit "Log in" %>
+  <%= f.password_field :password, class: "form-control login-form" %>
+  <br>
+  <%= f.submit "Log in", class: "btn btn-primary" %>
 <% end %>
+</div>
+<!-- <label for="exampleFormControlInput1" class="form-label">Email address</label>
+<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"> -->

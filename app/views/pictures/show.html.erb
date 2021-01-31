@@ -1,11 +1,16 @@
-<h1>詳細画面</h1>
-<p>内容: <%= @picture.content %></p>
-<p>画像: <%= image_tag @picture.image.url if @picture.image && @picture.image.url %></p>
-<% unless @picture.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to '「いいね」を解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to '「いいね」をする', favorites_path(picture_id: @picture.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
-<%= link_to '投稿一覧へ', pictures_path %>
+<h4>詳細</h4>
+<div class="card-layout">
+<div class="card w-50">
+  <div class="card-body">
+    <p class="card-text"><%= @picture.content %></p><p><%= image_tag @picture.image.url if @picture.image && @picture.image.url %></p>
+    <%= link_to '投稿一覧へ', pictures_path, class: "btn btn-outline-success"%>
+      <% if @favorite.present? %>
+        <%= link_to '', favorite_path(id: @favorite.id), class: "fas fa-heart unlike-btn", method: :delete %>
+      <% else %>
+        <%= link_to '', favorites_path(picture_id: @picture.id), class: "far fa-heart unlike-btn", method: :post %>
+      <% end %>
+    <span class="badge bg-danger"><%= @picture.favorites.count %></span>
+  </div>
+</div>
+<br>
+</div>
